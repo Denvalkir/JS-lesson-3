@@ -1,14 +1,20 @@
 const users = ["Марат", "Вадим"];
+const searchUser = prompt("Здравствуйте! Введите имя пользователя");
 
-const searchUser = prompt("Введите имя пользователя");
+const result = users.find(
+  (item) => item.toLowerCase() === searchUser.toLowerCase()
+);
 
-for (let i = 0; i < users.length; i++) {
-  if (users[i].toLowerCase() === searchUser.toLowerCase()) {
-    alert(`Пользователь с именем "${searchUser}" найден.`);
-    break;
-  } else {
-    alert(`Пользователь с именем "${searchUser}" не найден.`);
-    users.push(searchUser);
-    break;
-  }
+if (result == null || result == undefined) {
+  const question = prompt(
+    `Пользователь ${searchUser} не найден.
+     Если хотите добавить нового пользователя, то введите "да"`
+  );
+  alert(
+    question.toLowerCase() == "да"
+      ? "Новый пользователь добавлен. Всего доброго!"
+      : "Пользователь не добавлен. Всего доброго!"
+  );
+} else {
+  alert(`Пользователь ${result} найден!`);
 }
